@@ -1,13 +1,21 @@
+#imports
 import rasterio
-from rasterio.transform import from_origin
 import pandas as pd
 import numpy as np
+
+#function that we will call from the main script
 def grab(coordinates, df, filename):
+
+    #we are going to open the file
+    #then get information about the tif file and get the band that has the data on it
+    #then for all of the coordinates, we will transform the latitude and longitude to the width and height of the file
+    #then we use those numbers to find the value we are looking for and append it to the values list
+    #finally we save it to a dictionary and map it back to the dataframe
     with rasterio.open(filename) as src:
         values = []
         keys = np.arange(len(df))
-        #data from tif
         
+        #data from tif
         width = src.width
         height = src.height
 
